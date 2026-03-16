@@ -26,7 +26,7 @@ Param getParams(int argc, char** argv) {
     enum class ArgType {HELP, INPUTS, OUTPUT, UNKNOWN};
 
     auto classIfArg = [](const std::string& a) {
-        if (a == "--help") return ArgType::HELP;
+        if (a == "--help" || a == "-h") return ArgType::HELP;
         if (a == "--input" || a == "-i") return ArgType::INPUTS;
         if (a == "--output" || a == "-o") return ArgType::OUTPUT;
         return ArgType::UNKNOWN;
@@ -47,7 +47,7 @@ Param getParams(int argc, char** argv) {
             case ArgType::UNKNOWN:
             default:
                 std::cerr << "Unknown options: " << arg << std::endl;
-                std::cerr << "Usage: imgconv [file1 ...file] <dir>\n" << std::endl;
+                std::cerr << "Usage: imgconv --help" << std::endl;
                 std::exit(EXIT_FAILURE);
         }
     }
